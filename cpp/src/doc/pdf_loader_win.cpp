@@ -1,4 +1,6 @@
 #include "doc/pdf_loader_win.h"
+#include <QDir>
+#include <QFile>
 #include <algorithm>
 
 #ifdef Q_OS_WIN
@@ -38,19 +40,45 @@ QString hresult_text(winrt::hresult_error const &e) {
     return QStringLiteral("0x%1: %2").arg(hex, QString::fromWCharArray(e.message().c_str()));
 }
 
+// Loads the WinRT document from raw bytes; used when the path route fails.
+win_pdf::PdfDocument load_winrt_document_from_bytes(const QByteArray &bytes) {
+    win_streams::InMemoryRandomAccessStream stream;
+    win_streams::DataWriter writer(stream);
+    writer.WriteBytes(winrt::array_view<const uint8_t>(reinterpret_cast<const uint8_t *>(bytes.constData()),
+                                                       reinterpret_cast<const uint8_t *>(bytes.constData()) + bytes.size()));
+    writer.StoreAsync().get();
+    writer.FlushAsync().get();
+    writer.DetachStream();
+    stream.Seek(0);
+    return win_pdf::PdfDocument::LoadFromStreamAsync(stream).get();
+}
+
 // Loads the WinRT document for path on this thread; null plus error on failure.
+// The StorageFile path route can reject paths Qt itself handles happily
+// (observed on a real machine: 0x800700A1 ERROR_BAD_PATHNAME for a file the
+// open dialog returned), so a byte-stream load is tried whenever it throws.
 win_pdf::PdfDocument load_winrt_document(const QString &file_path, QString *error) {
-    auto file = win_storage::StorageFile::GetFileFromPathAsync(winrt::hstring(file_path.toStdWString())).get();
-    if (!file) {
-        if (error) *error = QStringLiteral("StorageFile is null");
-        return nullptr;
+    try {
+        const auto native_path = QDir::toNativeSeparators(file_path);
+        auto file = win_storage::StorageFile::GetFileFromPathAsync(winrt::hstring(native_path.toStdWString())).get();
+        if (!file) {
+            if (error) *error = QStringLiteral("StorageFile is null");
+            return nullptr;
+        }
+        auto document = win_pdf::PdfDocument::LoadFromFileAsync(file).get();
+        if (!document) {
+            if (error) *error = QStringLiteral("PdfDocument is null");
+            return nullptr;
+        }
+        return document;
+    } catch (winrt::hresult_error const &) {
+        QFile file(file_path);
+        if (!file.open(QIODevice::ReadOnly)) {
+            if (error) *error = QStringLiteral("could not open the file: %1").arg(file.errorString());
+            return nullptr;
+        }
+        return load_winrt_document_from_bytes(file.readAll());
     }
-    auto document = win_pdf::PdfDocument::LoadFromFileAsync(file).get();
-    if (!document) {
-        if (error) *error = QStringLiteral("PdfDocument is null");
-        return nullptr;
-    }
-    return document;
 }
 }
 

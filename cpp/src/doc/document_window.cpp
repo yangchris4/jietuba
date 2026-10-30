@@ -19,6 +19,7 @@
 #include <QDialogButtonBox>
 #include <QFileInfo>
 #include <QFutureWatcher>
+#include <QImageReader>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPageSize>
@@ -414,10 +415,18 @@ void DocumentManager::open_document_dialog(ToolSettingsManager *config_manager) 
 }
 
 void DocumentManager::open_image_file(ToolSettingsManager *config_manager, const QString &path) {
-    const QImage image(path);
+    QImageReader reader(path);
+    reader.setAutoTransform(true);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+    // The default allocation cap rejects very large scans/photos even though
+    // the file itself is small; the document window exists for big drawings.
+    reader.setAllocationLimit(0);
+#endif
+    const QImage image = reader.read();
     if (image.isNull()) {
-        log_error(T("打开图片失败: {file_path}", {{"file_path", path}}), "DocumentWindow");
-        show_error_dialog(nullptr, doc_tr("Open Failed"), doc_tr("Could not load this image file."));
+        log_error(T("打开图片失败: {file_path}: {error}", {{"file_path", path}, {"error", reader.errorString()}}), "DocumentWindow");
+        show_error_dialog(nullptr, doc_tr("Open Failed"),
+                          doc_tr("Could not load this image file.") + QStringLiteral("\n") + path + QStringLiteral("\n") + reader.errorString());
         return;
     }
     auto *window = new DocumentWindow(config_manager, path, image);
@@ -435,7 +444,7 @@ void DocumentManager::open_pdf_file(ToolSettingsManager *config_manager, const Q
         watcher->deleteLater();
         if (!result.document) {
             log_error(T("打开 PDF 失败: {file_path}: {error}", {{"file_path", path}, {"error", result.error}}), "DocumentWindow");
-            show_error_dialog(nullptr, doc_tr("Open Failed"), doc_tr("Could not load this PDF file.") + (result.error.isEmpty() ? QString() : QStringLiteral("\n") + result.error));
+            show_error_dialog(nullptr, doc_tr("Open Failed"), doc_tr("Could not load this PDF file.") + QStringLiteral("\n") + path + (result.error.isEmpty() ? QString() : QStringLiteral("\n") + result.error));
             return;
         }
         auto *window = new DocumentWindow(config_manager, path, result.document, dpi);
