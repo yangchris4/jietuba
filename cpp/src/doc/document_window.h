@@ -1,4 +1,7 @@
 #pragma once
+// Document annotation: open a local image or PDF file in a dedicated window
+// and annotate it with the regular canvas tools (see the doc module README in
+// IMPLEMENTATION notes). PDF pages are rendered through Windows.Data.Pdf.
 #include "canvas/canvas_host.h"
 #include "doc/pdf_loader_win.h"
 #include <QImage>
