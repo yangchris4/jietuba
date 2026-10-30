@@ -3,7 +3,7 @@ project(JietubaCpp LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
-find_package(Qt6 6.8 REQUIRED COMPONENTS Widgets Svg)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Widgets Svg Concurrent)
 qt_standard_project_setup()
 set(CMAKE_AUTOUIC OFF)
 if(MSVC)
@@ -32,7 +32,7 @@ qt_add_resources(jietuba_lib "jietuba_svg_resources" PREFIX "/" BASE ${JIETUBA_R
 target_include_directories(jietuba_lib PUBLIC src)
 # windows.h must not define min/max macros.
 target_compile_definitions(jietuba_lib PUBLIC NOMINMAX)
-target_link_libraries(jietuba_lib PUBLIC Qt6::Widgets Qt6::Svg)
+target_link_libraries(jietuba_lib PUBLIC Qt6::Widgets Qt6::Svg Qt6::Concurrent)
 if(WIN32)
     # windowsapp: the C++/WinRT runtime the document window's PDF loader uses (Windows.Data.Pdf).
     target_link_libraries(jietuba_lib PUBLIC user32 gdi32 shell32 shcore dwmapi ole32 oleaut32 oleacc winhttp version secur32 windowsapp)
