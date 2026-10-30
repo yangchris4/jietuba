@@ -4,6 +4,7 @@
 #include "core/logger.h"
 #include "core/theme.h"
 #include "core/ui_theme.h"
+#include "doc/document_window.h"
 #include "main_app.h"
 #include "pin/pin_manager.h"
 #include "settings/tool_settings.h"
@@ -141,6 +142,10 @@ QMenu *create_tray_menu(MainApp *app) {
     auto *action_clipboard = new QAction(with_hotkey(app, tr_text("Clipboard"), "clipboard"), menu);
     QObject::connect(action_clipboard, &QAction::triggered, app, &MainApp::open_clipboard_window);
     menu->addAction(action_clipboard);
+
+    auto *action_open_document = new QAction(tr_text("Annotate Image/PDF File..."), menu);
+    QObject::connect(action_open_document, &QAction::triggered, app, [app] { DocumentManager::instance()->open_document_dialog(app->config_manager); });
+    menu->addAction(action_open_document);
 
     auto *action_translate = new QAction(with_hotkey(app, tr_text("Translation"), "translation"), menu);
     QObject::connect(action_translate, &QAction::triggered, app, &MainApp::open_translator);

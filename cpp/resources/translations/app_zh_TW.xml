@@ -2292,6 +2292,10 @@ Replace it?</source>
 <context>
     <name>SystemTray</name>
     <message>
+        <source>Annotate Image/PDF File...</source>
+        <translation>標註圖片/PDF檔案…</translation>
+    </message>
+    <message>
         <source>jietuba - Click to screenshot</source>
         <translation>截圖吧 - 點擊截圖</translation>
     </message>
@@ -7532,6 +7536,81 @@ Replace it?</source>
     <message>
         <source>Copied files and folders, shown with their icons, names and sizes.</source>
         <translation>複製的檔案和資料夾，顯示圖示、名稱和大小。</translation>
+    </message>
+</context>
+<context>
+    <name>DocumentWindow</name>
+    <message>
+        <source>Open</source>
+        <translation>開啟</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>儲存</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>複製</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>關閉</translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>上一頁</translation>
+    </message>
+    <message>
+        <source>Next Page</source>
+        <translation>下一頁</translation>
+    </message>
+    <message>
+        <source>Page {current} of {total}</source>
+        <translation>第 {current} 頁，共 {total} 頁</translation>
+    </message>
+    <message>
+        <source>Fit Window</source>
+        <translation>適合視窗</translation>
+    </message>
+    <message>
+        <source>Loading page...</source>
+        <translation>正在載入頁面…</translation>
+    </message>
+    <message>
+        <source>Could not load this PDF page.</source>
+        <translation>無法載入此 PDF 頁面。</translation>
+    </message>
+    <message>
+        <source>Save Document Image</source>
+        <translation>儲存文件圖片</translation>
+    </message>
+    <message>
+        <source>Open Image/PDF for Annotation</source>
+        <translation>開啟圖片/PDF 進行標註</translation>
+    </message>
+    <message>
+        <source>Images and PDF (*.png *.jpg *.jpeg *.bmp *.webp *.gif *.tif *.tiff *.pdf);;All Files (*.*)</source>
+        <translation>圖片和 PDF (*.png *.jpg *.jpeg *.bmp *.webp *.gif *.tif *.tiff *.pdf);;所有檔案 (*.*)</translation>
+    </message>
+    <message>
+        <source>Open Failed</source>
+        <translation>開啟失敗</translation>
+    </message>
+    <message>
+        <source>Could not load this image file.</source>
+        <translation>無法載入此圖片檔案。</translation>
+    </message>
+    <message>
+        <source>Could not load this PDF file.</source>
+        <translation>無法載入此 PDF 檔案。</translation>
+    </message>
+    <message>
+        <source>PDF Render Quality</source>
+        <translation>PDF 渲染清晰度</translation>
+    </message>
+    <message>
+        <source>Choose the rendering resolution for PDF pages. Higher values are sharper but use more memory.</source>
+        <translation>選擇 PDF 頁面的渲染解析度。數值越高越清晰，但佔用記憶體也越多。</translation>
     </message>
 </context>
 </TS>

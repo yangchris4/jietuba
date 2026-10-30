@@ -2271,6 +2271,10 @@ Replace it?</translation>
 <context>
     <name>SystemTray</name>
     <message>
+        <source>Annotate Image/PDF File...</source>
+        <translation>Annotate Image/PDF File...</translation>
+    </message>
+    <message>
         <source>jietuba - Click to screenshot</source>
         <translation>jietuba - Click to screenshot</translation>
     </message>
@@ -7093,6 +7097,81 @@ Replace it?</translation>
     <message>
         <source>Copied files and folders, shown with their icons, names and sizes.</source>
         <translation>Copied files and folders, shown with their icons, names and sizes.</translation>
+    </message>
+</context>
+<context>
+    <name>DocumentWindow</name>
+    <message>
+        <source>Open</source>
+        <translation>Open</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Save</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>Copy</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Close</translation>
+    </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>Previous Page</translation>
+    </message>
+    <message>
+        <source>Next Page</source>
+        <translation>Next Page</translation>
+    </message>
+    <message>
+        <source>Page {current} of {total}</source>
+        <translation>Page {current} of {total}</translation>
+    </message>
+    <message>
+        <source>Fit Window</source>
+        <translation>Fit Window</translation>
+    </message>
+    <message>
+        <source>Loading page...</source>
+        <translation>Loading page...</translation>
+    </message>
+    <message>
+        <source>Could not load this PDF page.</source>
+        <translation>Could not load this PDF page.</translation>
+    </message>
+    <message>
+        <source>Save Document Image</source>
+        <translation>Save Document Image</translation>
+    </message>
+    <message>
+        <source>Open Image/PDF for Annotation</source>
+        <translation>Open Image/PDF for Annotation</translation>
+    </message>
+    <message>
+        <source>Images and PDF (*.png *.jpg *.jpeg *.bmp *.webp *.gif *.tif *.tiff *.pdf);;All Files (*.*)</source>
+        <translation>Images and PDF (*.png *.jpg *.jpeg *.bmp *.webp *.gif *.tif *.tiff *.pdf);;All Files (*.*)</translation>
+    </message>
+    <message>
+        <source>Open Failed</source>
+        <translation>Open Failed</translation>
+    </message>
+    <message>
+        <source>Could not load this image file.</source>
+        <translation>Could not load this image file.</translation>
+    </message>
+    <message>
+        <source>Could not load this PDF file.</source>
+        <translation>Could not load this PDF file.</translation>
+    </message>
+    <message>
+        <source>PDF Render Quality</source>
+        <translation>PDF Render Quality</translation>
+    </message>
+    <message>
+        <source>Choose the rendering resolution for PDF pages. Higher values are sharper but use more memory.</source>
+        <translation>Choose the rendering resolution for PDF pages. Higher values are sharper but use more memory.</translation>
     </message>
 </context>
 </TS>

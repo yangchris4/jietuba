@@ -885,5 +885,11 @@
 "已复制 {count} 个文件": "Copied {count} file(s)",
 "已复制动图: {file_path}": "Copied animation: {file_path}",
 "已钉住剪贴板中的 {count} 个文件": "Pinned {count} file(s) from the clipboard",
-"动图复制失败: {file_path}": "Could not copy the animation: {file_path}"
+"动图复制失败: {file_path}": "Could not copy the animation: {file_path}",
+"文档页不支持工具: {tool_name}": "Document page does not support the tool: {tool_name}",
+"PDF 页面渲染失败: {file_path} 第 {page} 页: {error}": "Failed to render PDF page {page} of {file_path}: {error}",
+"打开图片失败: {file_path}": "Failed to open image: {file_path}",
+"打开 PDF 失败: {file_path}: {error}": "Failed to open PDF {file_path}: {error}",
+"打开文档标注: {file_path} ({width}x{height})": "Opened document annotation: {file_path} ({width}x{height})",
+"打开文档标注: {file_path} ({pages} 页, {dpi} DPI)": "Opened document annotation: {file_path} ({pages} pages, {dpi} DPI)"
 }
